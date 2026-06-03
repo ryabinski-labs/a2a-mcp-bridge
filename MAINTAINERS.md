@@ -3,9 +3,9 @@
 This file lists the people responsible for reviewing and merging changes to
 `a2a-mcp-bridge`.
 
-| Maintainer | Contact | GitHub |
-| --- | --- | --- |
-| GipsyChef | cigan1@gmail.com | [@GipsyChef](https://github.com/GipsyChef) |
+| Maintainer | Contact | GitHub | Web |
+| --- | --- | --- | --- |
+| Yoni Ryabinski (GipsyChef) | cigan1@gmail.com | [@GipsyChef](https://github.com/GipsyChef) | [yoniryabinski.com](https://yoniryabinski.com) |
 
 ## Responsibilities
 
