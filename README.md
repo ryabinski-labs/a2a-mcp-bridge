@@ -1,9 +1,17 @@
 # a2a-mcp-bridge
 
+[![CI](https://github.com/GipsyChef/a2a-mcp-bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/GipsyChef/a2a-mcp-bridge/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Protocols: A2A + MCP](https://img.shields.io/badge/protocols-A2A%20%2B%20MCP-6f42c1.svg)](#what-are-a2a-and-mcp)
+
 **Two Claude agents collaborating on one machine over A2A and MCP — with Claude on Vertex AI.**
 
 *For developers and architects who want a working, inspectable multi-agent
 example they can run in one command and adapt.*
+
+> **Open-source companion** to the Anthropic × Google Cloud webinar
+> *["Deploying multi-agent systems using MCP and A2A with Claude on Vertex AI."](https://www.anthropic.com/webinars/deploying-multi-agent-systems-using-mcp-and-a2a-with-claude-on-vertex-ai)*
 
 **The problem:** most "multi-agent" examples tangle tools and agents together, so
 it is hard to see where the Model Context Protocol ends and the Agent2Agent
@@ -63,6 +71,27 @@ separate so it is obvious which protocol does what: **MCP for tool integration,
 A2A for task delegation.** It is intentionally local-first (the webinar's
 "initial phase"): going multi-host later is a host change, not a rewrite. See
 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+## What are A2A and MCP?
+
+**MCP (Model Context Protocol)** is an open standard from Anthropic for connecting
+an AI agent to its **tools and data** — the agent calls tools the way a program
+calls functions. **A2A (Agent2Agent Protocol)** is an open standard (originally
+from Google, now under the Linux Foundation) for one **agent to talk to another
+agent** as a peer — discovering it via an "agent card" and delegating tasks to it.
+
+They are complementary, not competing: **use MCP inside an agent, and A2A between
+agents.** This project is the smallest end-to-end example that shows both at once,
+running locally, with Claude as the model.
+
+## How this differs from an "MCP ↔ A2A bridge"
+
+Several good projects expose *existing* A2A agents to a single MCP client (an
+adapter: "let Claude Desktop call any A2A agent"). **`a2a-mcp-bridge` is not that.**
+It is a complete, runnable **two-agent system** — it *contains* the agents (a
+Researcher and an Analyst), each using MCP tools, that collaborate over A2A. Use
+it to **see and adapt the whole pattern**, not just to proxy calls. (It also ships
+an MCP façade, so it can *additionally* be consumed as a single tool — see below.)
 
 ## Quick start (no credentials needed)
 
@@ -172,11 +201,44 @@ The local phase has **no authentication** on the A2A endpoints and binds only to
 search a small **local corpus**, not the internet, so the demo is deterministic
 and side-effect free. See [`SECURITY.md`](SECURITY.md).
 
+## FAQ
+
+**Do I need a Google Cloud account or Vertex AI to run it?**
+No. The demo runs out of the box on a deterministic offline provider. Vertex AI
+(or an Anthropic API key) is only needed for a *live* Claude model.
+
+**Does it work offline / in CI?**
+Yes. The mock provider drives the real MCP tool calls and the real A2A wire, so
+the full collaboration runs with no credentials — that is exactly how CI tests it.
+
+**Is this production-ready?**
+No — it is a reference. The local phase has no auth and the tools search a small
+local corpus. Add authentication/TLS and real tools before going multi-host.
+
+**How is it different from the other "a2a mcp" repos?**
+Most are *bridges/adapters* that let one MCP client call existing A2A agents.
+This is a self-contained **two-agent system** you run and adapt. See
+[How this differs](#how-this-differs-from-an-mcp--a2a-bridge).
+
+**Can I use it from Claude Code, Codex, or opencode?**
+Yes — it exposes a single MCP tool, `research_and_analyze`. See
+[`integrations/`](integrations/).
+
+**Which models work?**
+Any Claude model available on Vertex AI or the Anthropic API (configurable via
+`A2A_MCP_MODEL`).
+
 ## License
 
 [Apache-2.0](LICENSE).
 
+## Maintainers
+
+Built and maintained by [**GipsyChef**](https://github.com/GipsyChef). Contributions
+welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) and [MAINTAINERS.md](MAINTAINERS.md).
+
 ---
 
-Not an official Anthropic or Google product. "Claude" is a trademark of
-Anthropic; A2A and MCP are open protocols.
+Not an official Anthropic or Google product. "Claude" is a trademark of Anthropic;
+**A2A (Agent2Agent)** and **MCP (Model Context Protocol)** are open protocols.
+"Vertex AI" and "Google Cloud" are trademarks of Google LLC.

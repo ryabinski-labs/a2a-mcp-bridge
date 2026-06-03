@@ -10,8 +10,20 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
-authors = [{ name = "GipsyChef" }]
-keywords = ["a2a", "mcp", "claude", "vertex-ai", "multi-agent", "anthropic", "agent2agent", "model-context-protocol"]
+authors = [{ name = "GipsyChef", email = "cigan1@gmail.com" }]
+keywords = [
+    "a2a",
+    "agent2agent",
+    "agent-to-agent",
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "anthropic",
+    "vertex-ai",
+    "google-cloud",
+    "multi-agent",
+    "ai-agents",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -43,7 +55,9 @@ dev = [
 [project.urls]
 Homepage = "https://github.com/GipsyChef/a2a-mcp-bridge"
 Repository = "https://github.com/GipsyChef/a2a-mcp-bridge"
+Documentation = "https://github.com/GipsyChef/a2a-mcp-bridge#readme"
 Issues = "https://github.com/GipsyChef/a2a-mcp-bridge/issues"
+Changelog = "https://github.com/GipsyChef/a2a-mcp-bridge/blob/main/CHANGELOG.md"
 
 [project.scripts]
 a2a-mcp-bridge = "a2a_mcp_bridge.demo:main"

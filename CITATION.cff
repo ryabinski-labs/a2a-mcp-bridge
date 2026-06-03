@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use a2a-mcp-bridge in your work, please cite it as below."
+title: "a2a-mcp-bridge"
+abstract: >-
+  Two Claude agents collaborating on one machine over the Agent2Agent (A2A) and
+  Model Context Protocol (MCP) standards, with Claude on Vertex AI. A runnable
+  reference implementation and MCP skill for Claude Code, Codex, and opencode.
+type: software
+authors:
+  - name: "GipsyChef"
+    website: "https://github.com/GipsyChef"
+license: Apache-2.0
+repository-code: "https://github.com/GipsyChef/a2a-mcp-bridge"
+url: "https://github.com/GipsyChef/a2a-mcp-bridge"
+version: "0.1.0"
+date-released: "2026-06-03"
+keywords:
+  - a2a
+  - agent2agent
+  - mcp
+  - model-context-protocol
+  - claude
+  - anthropic
+  - vertex-ai
+  - google-cloud
+  - multi-agent
