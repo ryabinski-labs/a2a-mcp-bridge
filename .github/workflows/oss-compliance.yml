@@ -1,0 +1,42 @@
+name: OSS Compliance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: compliance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Required community files present
+        run: |
+          set -e
+          required="README.md LICENSE CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md MAINTAINERS.md CHANGELOG.md .github/CODEOWNERS"
+          missing=0
+          for f in $required; do
+            if [ ! -f "$f" ]; then echo "::error::missing required file: $f"; missing=1; fi
+          done
+          exit $missing
+
+      - name: No committed secrets or .env
+        run: |
+          set -e
+          if git ls-files | grep -E '(^|/)\.env$' ; then
+            echo "::error::a .env file is committed"; exit 1
+          fi
+          # Fail on obvious credential material in tracked files.
+          if git grep -nE 'sk-ant-[A-Za-z0-9]{8,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|AKIA[0-9A-Z]{12,}' -- . ':(exclude).github/workflows/oss-compliance.yml' ; then
+            echo "::error::possible secret found in tracked files"; exit 1
+          fi
+          echo "no secrets found"

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "a2a-mcp-bridge": {
+      "command": "/abs/path/to/.venv/bin/a2a-mcp-bridge-mcp",
+      "args": [],
+      "env": {
+        "A2A_MCP_PROVIDER": "mock"
+      }
+    }
+  }
+}

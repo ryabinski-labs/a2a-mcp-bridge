@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "a2a-mcp-bridge"
+version = "0.1.0"
+description = "Two Claude agents collaborating on one machine over A2A (agent-to-agent) and MCP (tools), with Claude on Vertex AI."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "GipsyChef" }]
+keywords = ["a2a", "mcp", "claude", "vertex-ai", "multi-agent", "anthropic", "agent2agent", "model-context-protocol"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+dependencies = [
+    "a2a-sdk>=1.1,<2",
+    "mcp>=1.27,<2",
+    "anthropic[vertex]>=0.105,<1",
+    "starlette>=0.40",
+    "uvicorn>=0.30",
+    "httpx>=0.27",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/GipsyChef/a2a-mcp-bridge"
+Repository = "https://github.com/GipsyChef/a2a-mcp-bridge"
+Issues = "https://github.com/GipsyChef/a2a-mcp-bridge/issues"
+
+[project.scripts]
+a2a-mcp-bridge = "a2a_mcp_bridge.demo:main"
+a2a-mcp-bridge-mcp = "a2a_mcp_bridge.mcp_facade:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/a2a_mcp_bridge"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]

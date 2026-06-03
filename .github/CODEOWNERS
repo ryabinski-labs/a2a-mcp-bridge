@@ -1,0 +1,8 @@
+# Default owner for everything in this repo.
+* @GipsyChef
+
+# Sensitive areas — model backends, A2A/MCP wiring, and release/CI.
+/src/a2a_mcp_bridge/providers/ @GipsyChef
+/src/a2a_mcp_bridge/agents/    @GipsyChef
+/.github/                      @GipsyChef
+/SECURITY.md                   @GipsyChef

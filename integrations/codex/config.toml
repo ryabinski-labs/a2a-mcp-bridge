@@ -1,0 +1,14 @@
+# Add this to ~/.codex/config.toml (or a trusted project's .codex/config.toml).
+# Replace the command path with the absolute path to your installed entry point:
+#   which a2a-mcp-bridge-mcp
+
+[mcp_servers.a2a-mcp-bridge]
+command = "/abs/path/to/.venv/bin/a2a-mcp-bridge-mcp"
+args = []
+
+# Optional: use a real Claude model instead of the offline mock provider.
+# [mcp_servers.a2a-mcp-bridge.env]
+# A2A_MCP_PROVIDER = "vertex"
+# A2A_MCP_VERTEX_PROJECT_ID = "your-gcp-project"
+# A2A_MCP_VERTEX_REGION = "us-east5"
+# A2A_MCP_MODEL = "claude-sonnet-4-6"

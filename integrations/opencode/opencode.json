@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "a2a-mcp-bridge": {
+      "type": "local",
+      "command": ["/abs/path/to/.venv/bin/a2a-mcp-bridge-mcp"],
+      "enabled": true,
+      "environment": {
+        "A2A_MCP_PROVIDER": "mock"
+      }
+    }
+  }
+}
