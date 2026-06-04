@@ -53,11 +53,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/GipsyChef/a2a-mcp-bridge"
-Repository = "https://github.com/GipsyChef/a2a-mcp-bridge"
-Documentation = "https://github.com/GipsyChef/a2a-mcp-bridge#readme"
-Issues = "https://github.com/GipsyChef/a2a-mcp-bridge/issues"
-Changelog = "https://github.com/GipsyChef/a2a-mcp-bridge/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/ryabinski-labs/a2a-mcp-bridge"
+Repository = "https://github.com/ryabinski-labs/a2a-mcp-bridge"
+Documentation = "https://github.com/ryabinski-labs/a2a-mcp-bridge#readme"
+Issues = "https://github.com/ryabinski-labs/a2a-mcp-bridge/issues"
+Changelog = "https://github.com/ryabinski-labs/a2a-mcp-bridge/blob/main/CHANGELOG.md"
 Author = "https://yoniryabinski.com"
 
 [project.scripts]
